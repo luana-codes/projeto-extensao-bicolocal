@@ -15,6 +15,7 @@ class CampoTexto extends StatefulWidget {
     this.validador,
     this.formatadores,
     this.raio = 12,
+    this.aoMudar,
   });
  
   final TextEditingController controlador;
@@ -25,6 +26,7 @@ class CampoTexto extends StatefulWidget {
   final String? Function(String?)? validador;
   final List<TextInputFormatter>? formatadores;
   final double raio;
+  final ValueChanged<String>? aoMudar;
  
   @override
   State<CampoTexto> createState() => _EstadoCampoTexto();
@@ -48,6 +50,7 @@ class _EstadoCampoTexto extends State<CampoTexto> {
       keyboardType: widget.teclado,
       inputFormatters: widget.formatadores,
       validator: widget.validador,
+      onChanged: widget.aoMudar,
       decoration: InputDecoration(
         hintText: widget.dica,
         hintStyle: EstilosTexto.dicaCampo,

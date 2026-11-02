@@ -6,6 +6,7 @@ import '../componentes/campo_texto.dart';
 import '../componentes/logotipo.dart';
 import '../tema/cores.dart';
 import '../tema/estilos_texto.dart';
+import 'tela_lista_bicos.dart';
 
 class TelaLogin extends StatefulWidget {
   const TelaLogin({super.key});
@@ -78,21 +79,26 @@ class _EstadoTelaLogin extends State<TelaLogin> {
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(texto)));
   }
+
+  void _abrirListaDeBicos() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (contexto) => const TelaListaBicos()),
+    );
+  }
  
   void _entrar() {
-    if (_formularioLogin.currentState!.validate()) {
-      _mostrarMensagem('Login validado. Autenticação será ligada na Etapa 2.');
-    }
+  if (_formularioLogin.currentState!.validate()) {
+    _abrirListaDeBicos();
   }
- 
-  void _cadastrar() {
-    if (_formularioCadastro.currentState!.validate()) {
-      _mostrarMensagem('Cadastro validado. Gravação será ligada na Etapa 2.');
-    }
+}
+
+void _cadastrar() {
+  if (_formularioCadastro.currentState!.validate()) {
+    _abrirListaDeBicos();
   }
+}
  
   void _esqueceuSenha() {
-    // TODO (futuro): RF03 - recuperação de senha por e-mail.
     _mostrarMensagem('Recuperação de senha prevista para as próximas etapas.');
   }
 
